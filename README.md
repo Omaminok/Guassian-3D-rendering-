@@ -1,4 +1,3 @@
-#generate description of 350 words from this 
 🌌 Gaussian Splatting Pipeline (RTX 3050 Optimized)
 A high-performance 3D Gaussian Splatting implementation specifically engineered to run within the 4GB VRAM constraints of the RTX 3050 (Laptop/Desktop). This pipeline bridges WSL2 and Windows for a seamless training and visualization experience.
 
@@ -20,3 +19,24 @@ Visual Assurance: Integrated Open3D point cloud visualization for data quality c
 Real-Data Initialization: Successfully integrated 8,051 sparse points from COLMAP for high-fidelity startup.
 4GB VRAM Guard: Implemented max_gaussians (120k) and image downscaling to prevent OOM errors.
 Pro-Level Export: Generates industry-standard .ply files compatible with SuperSplat, Polycam, and Splat AI by utilizing Spherical Harmonics (f_dc) encoding.
+📂 Project Structure
+├── .env                  # Config for Supabase/Anedya modules
+├── EXECUTION_GUIDE.md   # Step-by-step run instructions
+├── setup.sh             # Linux environment setup script
+├── smoke_test.py        # Hardware/Version validator
+├── validate_colmap.py   # Dataset & Reconstruction validator
+├── train_single_node.py  # Core training & export engine
+└── requirements.txt     # Python dependency manifest
+🚀 Quick Start
+Prepare WSL2 Environment:
+./setup.sh
+Verify Data:
+python validate_colmap.py --data_dir data
+Run Optimized Training:
+python train_single_node.py --data_dir data --iterations 30000
+🔗 Integration with Other Modules
+The pipeline is pre-configured to sync with:
+
+Supabase: Remote model storage and metadata tracking.
+Anedya: Real-time telemetry during training (mock-ready).
+SuperSplat: Optimized for the PlayCanvas Gaussian Splatting editor.
